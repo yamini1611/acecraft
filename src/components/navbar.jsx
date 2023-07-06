@@ -12,8 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const Home = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
-  const navigate = useNavigate();
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -21,10 +19,12 @@ const Home = () => {
  
   useEffect(() => {
     fetchCartItems();
+    setInterval(fetchCartItems, 1000); 
+
   }, []);
 
   const fetchCartItems = () => {
-    fetch("http://localhost:4000/Cart")
+    fetch("https://acecraft-deploy-tkgw.onrender.com/Cart")
       .then((response) => response.json())
       .then((data) => {
         setCartItemCount(data.length);
@@ -32,9 +32,7 @@ const Home = () => {
       .catch((error) => console.error("Error retrieving cart items:", error));
   };
 
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true); // Update login status to true
-  };
+
   return (
     <div>
       <div className="fixed-top">
@@ -99,6 +97,7 @@ const Home = () => {
                       </ul>
                     </div>
                   </li>
+                  <Link to="/Signin">
                   <li>
                     <p id='cartButton'   >
                       <i id='fa' style={{ paddingLeft: 25, marginTop: -5 }} className="fa-sharp fa-solid fa-cart-shopping">
@@ -108,6 +107,7 @@ const Home = () => {
                       </i>
                     </p>
                   </li>
+                  </Link>
                 </ul>
               </div>
             </div>
@@ -130,7 +130,7 @@ export function Signin() {
   const handleSubmit = (values) => {
     const { email, password } = values;
 
-    fetch('http://localhost:4000/Register')
+    fetch('https://acecraft-deploy-tkgw.onrender.com/Register')
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -237,7 +237,7 @@ export const Signup = () => {
         console.log(values);
       
         axios
-          .post('http://localhost:4000/Register', values)
+          .post('https://acecraft-deploy-tkgw.onrender.com/Register', values)
           .then((response) => {
             if (response.status === 200) {
               alert('User registered:', response.data);

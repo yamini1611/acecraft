@@ -25,7 +25,7 @@ function Honda() {
 
     const [mensindex, setmensindex] = useState([]);
     const fetchData = () => {
-        fetch('http://localhost:4000/mens')
+        fetch('https://acecraft-deploy-tkgw.onrender.com/mens')
             .then((response) => response.json())
             .then((data) => {
                 setmensindex(data);
@@ -85,7 +85,7 @@ function Honda() {
 function Timeline() {
     const [stepsindex, setstepsindex] = useState([]);
     const fetchData = () => {
-        fetch('http://localhost:4000/timeline')
+        fetch('https://acecraft-deploy-tkgw.onrender.com/steps')
             .then((response) => response.json())
             .then((data) => {
                 setstepsindex(data);
@@ -113,14 +113,15 @@ function Timeline() {
                     <div class="point">5</div>
                     <div class="point1">6</div>
                 </div>
-       
+
+
 
                 {stepsindex.map((steps) => (
                     <div className="col-md-2" key={steps.stepsid}>
                         <div className="">
                             <img src={steps.stepsimg} alt="" width='120px' className="stepsimg" />
-                            <h1 className="steps1 ms-5">{steps.stepscontent1}</h1>
-                            <h1 className="steps2 ms-5">{steps.stepscontent2}</h1>
+                            <h1 className="stepscontent1 ms-5" style={{color:"white" , fontSize:30}}>{steps.stepscontent1}</h1>
+                            <h1 className="stepscontent2 ms-5" style={{color:"white" , fontSize:30}}>{steps.stepscontent2}</h1>
                         </div>
 
                     </div>
@@ -139,10 +140,11 @@ function Timeline() {
 
 
 
+
 function Images() {
     const [fourimgindex, setfourimgindex] = useState([]);
     const fetchData = () => {
-        fetch('http://localhost:4000/four')
+        fetch('https://acecraft-deploy-tkgw.onrender.com/four')
             .then((response) => response.json())
             .then((data) => {
                 setfourimgindex(data);
@@ -192,7 +194,7 @@ export const HondaProducts = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:4000/Honda')
+            .get('https://acecraft-deploy-tkgw.onrender.com/Honda')
             .then((response) => {
                 console.log(response.data);
                 setProducts(response.data);
@@ -243,7 +245,7 @@ export const HondaProducts = () => {
                 src="http://cdn.storehippo.com/s/5997cc7c4d6e8ffa20e50aae/ms.files/MJK07401.jpg"
                 alt=""
                 height={820}
-                width={1519}
+                width={1518}
             ></img>
             <div
                 style={{
@@ -265,14 +267,14 @@ export const HondaProducts = () => {
                 <option value="nameAscending">Name: Ascending Order</option>
                 <option value="nameDescending">Name: Descending Order</option>
             </select>
-            <div style={{ paddingLeft: 250, marginTop: 70 }}>
+            <div style={{ paddingLeft: 190, marginTop: 70 }}>
 
                 <h5 id="ti" style={{ marginTop: -80, paddingBottom: 30 }}>HONDA CARS DEALER MANPOWER UNIFORMS <span style={{ fontFamily: "initial", fontWeight: 100, fontSize: 17, color: "gray", marginLeft: 50 }}>-11 items</span></h5>
                 <h5 id="ti">NEW HORIZON GURUKUL</h5>
 
                 {products.map((product) => (
                     <Link key={product.id} to={`/HondaDisplay/${product.id}`} style={{ textDecoration: 'none' }}>
-                        <div style={{ marginLeft: 1, display: "inline-block", flexDirection: "col" }}>
+                        <div style={{ marginLeft: 10, display: "inline-block", flexDirection: "col" }}>
                             <img id='enlist' className="img-fluid" src={product.image} alt={product.pname} />
                             <h4 id="pname">{product.pname}</h4>
 
@@ -291,7 +293,7 @@ export const HondaDisplay = () => {
   
 
     useEffect(() => {
-        fetch(`http://localhost:4000/Honda/${id}`)
+        fetch(`https://acecraft-deploy-tkgw.onrender.com/Honda/${id}`)
             .then((response) => response.json())
             .then((data) => setProduct(data));
     }, [id]);
@@ -306,7 +308,7 @@ export const HondaDisplay = () => {
 
         return (
             <div id='divcon' className="clearfix" style={{ marginBottom: 100 }}>
-                <img src={products.image} alt={products.pname} id="pimg1" onClick={handleGoBack} height={500} width={490} class="col-md-5 float-md-start mb-3 ms-md-3 ml-5 "></img>
+                <img src={products.image} alt={products.pname} id="pimg1" onClick={handleGoBack} height={500} width={450} class="col-md-5 float-md-start mb-3 ms-md-3 ml-5 "></img>
                 <h5 id='t1' > {products.pname}</h5>
                 <h6 id='t2'><strong>Product Code: </strong>{products.productcode}</h6>
                 <h6 id='t2' style={{ marginTop: 360 }}><strong>Brand:</strong>{products.Brand}</h6>
@@ -330,9 +332,7 @@ export const HondaDisplay = () => {
                     </div><br></br>
 
                     <div style={{ marginTop: 40 }}>
-                        <button type="button" style={{ marginRight: 5, backgroundColor: 'black', color: 'white', padding: 10 }} >ADD TO CART</button>
-                        <button type="button" style={{ backgroundColor: 'black', color: 'white', padding: 10 }}>BUY NOW</button>
-                        <div id='carosuel'>
+                          <div id='carosuel' >
                             <h6 id='co4'>Description of product</h6>
                             <h1 id='ca5'>NO RETURNS & NO EXCHANGE.</h1>
                             <h6 id='ca5' style={{ fontWeight: 200, fontSize: 13 }}>Made from Poly-cotton. Henley neckline. Short sleeves.</h6>

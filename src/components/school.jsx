@@ -29,7 +29,7 @@ export function Fixed1() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/school');
+      const response = await axios.get('https://acecraft-deploy-tkgw.onrender.com/school');
       setschoolindex(response.data)
     }
     catch (error) {
@@ -302,7 +302,7 @@ export const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/products/${id}`)
+    fetch(`https://acecraft-deploy-tkgw.onrender.com/products/${id}`)
       .then((response) => response.json())
       .then((data) => setProduct(data));
   }, [id]);
@@ -365,7 +365,7 @@ export const ProductDetails = () => {
       quantity: quantity,
     };
 
-    fetch("http://localhost:4000/Cart", {
+    fetch("https://acecraft-deploy-tkgw.onrender.com/Cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -466,12 +466,12 @@ export const ProductDetails = () => {
         <div style={{ marginTop: 40 }}>
           <button type="button" onClick={handleAddToCart} style={{ marginRight: 5, backgroundColor: 'black', color: 'white', padding: 10 }} >ADD TO CART</button>
           <button type="button" onClick={handleAddToCart} style={{ backgroundColor: 'black', color: 'white', padding: 10 }}>BUY NOW</button>
-          <div id='carosuel'>
+          <div id='carosuel'  >
             <h6 id='co4'>Description of product</h6>
             <h1 id='ca5'>NO RETURNS & NO EXCHANGE.</h1>
             <h6 id='ca5' style={{ fontWeight: 200, fontSize: 13 }}>Made from Poly-cotton. Henley neckline. Short sleeves.</h6>
             <h6 id='co4' style={{ fontWeight: 400, fontSize: 16 }}>Related products</h6>
-            <div id="gallery" class="carousel slide" data-ride="carousel">
+            <div id="gallery" class="carousel slide" data-ride="carousel" >
               <div class="carousel-inner" >
 
                 <div class="carousel-item active" >
@@ -556,11 +556,23 @@ export const ProductList = () => {
   const [sortOption, setSortOption] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [itemCount, setItemCount] = useState(-30);
 
 
   useEffect(() => {
+    axios.get('https://acecraft-deploy-tkgw.onrender.com/products')
+      .then(response => {
+        const count = response.data.products.length;
+        setItemCount(count);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, []);
+
+  useEffect(() => {
     axios
-      .get('http://localhost:4000/products')
+      .get('https://acecraft-deploy-tkgw.onrender.com/products')
       .then((response) => {
         console.log(response.data);
         setProducts(response.data);
@@ -648,7 +660,7 @@ export const ProductList = () => {
       quantity: quantity,
     };
 
-    fetch("http://localhost:4000/Cart", {
+    fetch("https://acecraft-deploy-tkgw.onrender.com/Cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -714,7 +726,7 @@ export const ProductList = () => {
       </select>
       <div style={{ paddingLeft: 250, marginTop: 200 }}>
         <h5 id="ti" style={{ marginTop: -200, paddingBottom: 30 }}>
-          SCHOOL <span style={{ fontFamily: 'initial', fontWeight: 100, color: 'gray' }}>-44 items</span>
+        SCHOOL <span style={{ fontFamily: 'initial', fontWeight: 100, color: 'gray' }}>{itemCount} items</span>
         </h5>
         <h5 id="ti">NEW HORIZON GURUKUL</h5>
 
@@ -802,9 +814,7 @@ export const ProductList = () => {
           <input style={{  color: "black" }} onChange={handleQuantityChange} placeholder="" type="number"  min="1" step="1" required></input>
 
         </div><br></br>
-        <button type="button" onClick={handleAddToCart} style={{ marginRight: 5, backgroundColor: 'black', color: 'white', padding: 10 }} >ADD TO CART</button>
-          <button type="button" onClick={handleAddToCart} style={{ backgroundColor: 'black', color: 'white', padding: 10 }}>BUY NOW</button>
-          </div>
+             </div>
         </div>
       </div>
       <div className="modal-footer">

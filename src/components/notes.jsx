@@ -6,7 +6,7 @@ const Notes = () => {
   const [notesindex, setnotesindex] = useState([]);
 
   const fetchData = () => {
-    fetch('http://localhost:4000/blog')
+    fetch('https://acecraft-deploy-tkgw.onrender.com/blog')
       .then((response) => response.json())
       .then((data) => {
         setnotesindex(data);

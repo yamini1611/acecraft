@@ -11,7 +11,7 @@ const AddToCart = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:4000/Cart")
+    fetch("https://acecraft-deploy-tkgw.onrender.com/Cart")
       .then((response) => response.json())
       .then((data) => {
         setCartItems(data);
@@ -34,7 +34,7 @@ const AddToCart = () => {
       return item;
     });
 
-    fetch(`http://localhost:4000/Cart/${itemId}`, {
+    fetch(`https://acecraft-deploy-tkgw.onrender.com/Cart/${itemId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const AddToCart = () => {
         return item;
       });
 
-      fetch(`http://localhost:4000/Cart/${itemId}`, {
+      fetch(`https://acecraft-deploy-tkgw.onrender.com/Cart/${itemId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -129,12 +129,11 @@ const AddToCart = () => {
     updateCartItem(itemId, updatedQuantity);
   };
 
-// ...existing code...
 
 const removeCartItem = (itemId) => {
   const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
 
-  fetch(`http://localhost:4000/Cart/${itemId}`, {
+  fetch(`https://acecraft-deploy-tkgw.onrender.com/Cart/${itemId}`, {
     method: "DELETE",
   })
     .then(() => {
@@ -152,8 +151,7 @@ const removeCartItem = (itemId) => {
       });
 
       setTimeout(() => {
-        // Delete operation after 5 seconds
-        fetch(`http://localhost:4000/Cart/${itemId}`, {
+        fetch(`https://acecraft-deploy-tkgw.onrender.com/Cart/${itemId}`, {
           method: "DELETE",
         })
           .then(() => {
@@ -165,10 +163,6 @@ const removeCartItem = (itemId) => {
     .catch((error) => console.error("Error removing cart item:", error));
 };
 
-// ...existing code...
-
-
-   
 
   return (
     <div>
