@@ -11,7 +11,7 @@ import caro2 from './Images/caro2.png'
 import caro3 from './Images/caro3.png'
 import con3 from './Images/College-3.jpg'
 
-
+//college component 
 
 function College() {
     return (
@@ -48,7 +48,7 @@ function College() {
 
 }
 
-
+// logo component
 export function Logo() {
     return (
         <div>
@@ -107,7 +107,7 @@ export function Logo() {
         </div>
     )
 }
-
+//black component
 export function Black() {
   
     return (
@@ -138,6 +138,7 @@ export function Black() {
     )
 }
 
+//get in touch component
 export function Container3(){
     return(
         <div id='con3' className="container w-100">

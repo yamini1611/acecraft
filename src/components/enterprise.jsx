@@ -8,6 +8,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Form  from './form';
 
+//enterprice component
 export default function Enterprice() {
     return (
         <div className="imagefixed">
@@ -19,7 +20,7 @@ export default function Enterprice() {
     );
 }
 
-
+//honda
 
 function Honda() {
 
@@ -82,6 +83,8 @@ function Honda() {
     );
 }
 
+
+//timeline
 function Timeline() {
     const [stepsindex, setstepsindex] = useState([]);
     const fetchData = () => {
@@ -123,24 +126,14 @@ function Timeline() {
                             <h1 className="stepscontent1 ms-5" style={{color:"white" , fontSize:30}}>{steps.stepscontent1}</h1>
                             <h1 className="stepscontent2 ms-5" style={{color:"white" , fontSize:30}}>{steps.stepscontent2}</h1>
                         </div>
-
                     </div>
-
                 ))}
-
             </div>
-
-
         </div>
-
-
-
     );
 }
 
-
-
-
+//images component
 function Images() {
     const [fourimgindex, setfourimgindex] = useState([]);
     const fetchData = () => {
@@ -188,6 +181,7 @@ function Images() {
     );
 }
 
+//hondaproducts  component
 export const HondaProducts = () => {
     const [products, setProducts] = useState([]);
     const [sortOption, setSortOption] = useState('');
@@ -286,6 +280,8 @@ export const HondaProducts = () => {
     );
 };
 
+
+//hondadisplay component
 export const HondaDisplay = () => {
     const { id } = useParams();
     const navigate = useNavigate();

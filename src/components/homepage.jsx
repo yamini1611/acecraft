@@ -3,6 +3,8 @@ import React from "react";
 import home3 from './Images/home3.jpg';
 import home4 from './Images/home4.jpg';
 import  './CSS/homepage.css';
+
+//home component
 function home() {
     return (
         <div classNameName="container-breakpoint xs">

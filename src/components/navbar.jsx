@@ -9,6 +9,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// home component
 const Home = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -23,6 +24,7 @@ const Home = () => {
 
   }, []);
 
+  // fetch cart 
   const fetchCartItems = () => {
     fetch("https://acecraft-deploy-tkgw.onrender.com/Cart")
       .then((response) => response.json())
@@ -120,7 +122,7 @@ const Home = () => {
 
 export default Home;
 
-
+// signin component
 
 export function Signin() {
   const [error, setError] = useState('');
@@ -230,12 +232,13 @@ export function Signin() {
   );
 }
 
+//signup component
 export const Signup = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (values) => {
         console.log(values);
-      
+//axios post method    
         axios
           .post('https://acecraft-deploy-tkgw.onrender.com/Register', values)
           .then((response) => {
@@ -245,6 +248,7 @@ export const Signup = () => {
             } else {
               throw new Error('Error registering user');
             }
+            navigate('/Signin')
           })
           .catch((error) => {
             console.error('Error registering user:', error);

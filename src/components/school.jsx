@@ -8,6 +8,7 @@ import size from './Images/sizeguide.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+//school
 function School() {
   return (
     <div>
@@ -78,6 +79,7 @@ export function Fixed1() {
   );
 }
 
+// con4 content
 export function Con4() {
   return (
     <section className="main2">
@@ -138,6 +140,7 @@ export function Con5() {
   );
 }
 
+// con6 content
 export function Con6() {
   return (
     <section className="main3" style={{ color: '#978F8F', backgroundColor: 'black' }}>
@@ -294,6 +297,7 @@ export function Con6() {
   );
 }
 
+// productdetails
 export const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -549,7 +553,7 @@ export const ProductDetails = () => {
   )
 };
 
-
+//productlist
 
 export const ProductList = () => {
   const [product, setProducts] = useState([]);

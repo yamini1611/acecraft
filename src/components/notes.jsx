@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './CSS/notes.css';
 import { Link } from 'react-router-dom';
 
+// notes component
 const Notes = () => {
   const [notesindex, setnotesindex] = useState([]);
 
+  //fetch blog
   const fetchData = () => {
     fetch('https://acecraft-deploy-tkgw.onrender.com/blog')
       .then((response) => response.json())

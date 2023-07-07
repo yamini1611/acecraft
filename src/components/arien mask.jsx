@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 import './CSS/arrienmask.css';
+
+//arien mask component
 function Arienmask(){
     return(
         <div data-ng-if="!loading" id='div'className="ng-scope" >

@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
+//cart context hook 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 

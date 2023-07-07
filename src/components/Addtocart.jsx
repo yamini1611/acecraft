@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import './CSS/Addctocart.css';
-import {ToastContainer,toast} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import Swal from 'sweetalert2';
 
+//addtocart component
 const AddToCart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -22,6 +23,8 @@ const AddToCart = () => {
       );
   }, [setCartItems]);
 
+
+  //update cart item 
   const updateCartItem = (itemId, updatedQuantity) => {
     const updatedCartItems = cartItems.map((item) => {
       if (item.id === itemId) {
@@ -129,39 +132,39 @@ const AddToCart = () => {
     updateCartItem(itemId, updatedQuantity);
   };
 
+  //delete cart item 
+  const removeCartItem = (itemId) => {
+    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
 
-const removeCartItem = (itemId) => {
-  const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
-
-  fetch(`https://acecraft-deploy-tkgw.onrender.com/Cart/${itemId}`, {
-    method: "DELETE",
-  })
-    .then(() => {
-      setCartItems(updatedCartItems);
-      toast.success("Product deleted Successfully", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        className: 'success-toast',
-        bodyClassName: 'success-toast-body',
-      });
-
-      setTimeout(() => {
-        fetch(`https://acecraft-deploy-tkgw.onrender.com/Cart/${itemId}`, {
-          method: "DELETE",
-        })
-          .then(() => {
-            console.log("Product deleted after 5 seconds");
-          })
-          .catch((error) => console.error("Error removing cart item:", error));
-      }, 8000);
+    fetch(`https://acecraft-deploy-tkgw.onrender.com/Cart/${itemId}`, {
+      method: "DELETE",
     })
-    .catch((error) => console.error("Error removing cart item:", error));
-};
+      .then(() => {
+        setCartItems(updatedCartItems);
+        toast.success("Product deleted Successfully", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          className: 'success-toast',
+          bodyClassName: 'success-toast-body',
+        });
+
+        setTimeout(() => {
+          fetch(`https://acecraft-deploy-tkgw.onrender.com/Cart/${itemId}`, {
+            method: "DELETE",
+          })
+            .then(() => {
+              console.log("Product deleted after 5 seconds");
+            })
+            .catch((error) => console.error("Error removing cart item:", error));
+        }, 8000);
+      })
+      .catch((error) => console.error("Error removing cart item:", error));
+  };
 
 
   return (
@@ -304,9 +307,9 @@ const removeCartItem = (itemId) => {
 
 export default AddToCart;
 
-let paymentHandler="";
+let paymentHandler = "";
 
-
+//payment intergration
 
 function makePayment() {
   invokeStripe();
@@ -336,7 +339,7 @@ function invokeStripe() {
     script.type = "text/javascript";
     script.src = "https://checkout.stripe.com/checkout.js";
     script.onClick = () => {
-   paymentHandler = window.StripeCheckout.configure({
+      paymentHandler = window.StripeCheckout.configure({
         key: "pk_test_51Kb7TuSGj6LZeNumr4WWZQlyT0VAdXUwQ0zPIJAmGbnt9MAwXkJ5aIfQOZsCPraDu1L2BxAyRb8jLSF5tB6fL8mO00Yw0HiRYf",
         locale: "auto",
         token: function (stripeToken) {

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './CSS/notes.css'
+
+//notesdetails
 const Notesdetails = () => {
   const [title, setTitle] = useState('');
   const { id } = useParams();
 
   useEffect(() => {
-    // Fetch the data for the specific id (replace 'http://localhost:4000/blog' with your API endpoint)
+    // Fetching the data 
     fetch(`https://acecraft-deploy-tkgw.onrender.com/blog/${id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -16,6 +18,7 @@ const Notesdetails = () => {
 
   const formattedTitle = title.charAt(0).toUpperCase() + title.slice(1).toLowerCase();
 
+  //content
   return (
     <div style={{ marginTop: 140 }}>
       <div>
